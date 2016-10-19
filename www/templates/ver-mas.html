@@ -1,0 +1,61 @@
+<ion-view view-title="Detalles">
+ <ion-nav-buttons side="primary">
+   <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
+ </ion-nav-buttons>
+  <ion-content>
+<div class="list card">
+<div class="item item-avatar">
+    <img ng-src="{{producto.img}}">
+    <h2>{{producto.nombre_producto}}</h2>
+    <p>{{producto.fecha_add}}</p>
+    <span class="badge badge-positive" style="font-size: 25px; padding: 10px;">{{'$ '+producto.precio}}</span>
+  </div>
+  <div class="item item-body">
+    <div style="text-align: center;">
+    <img ng-src="{{producto.img}}" ng-click="showImages($index)" class="image-list-thumb"/>
+    </div>
+    <p>
+      {{producto.descripcion}}
+    </p>
+  </div>
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-arrow-resize"></i>
+    Talla
+    <span class="badge badge-positive">{{producto.detalles[0].nombre_material}}</span>
+  </a>
+  <a class="item item-icon-left" href="#">
+    <i class="icon ion-android-color-palette"></i>
+    Color
+    <span class="badge badge-stable">{{producto.nombre_color}}</span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-briefcase"></i>
+    Stock
+    <span class="badge badge-balanced">{{producto.stock}}</span>
+  </a>
+  <div class="item item-divider">
+   <i class="icon ion-person"></i> ARTESANO
+  </div>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-ios-person-outline"></i>
+    Nombres Apellidos:
+    <span class="badge badge-stable">{{producto.socio[0].socio_nombres+' '+producto.socio[0].socio_apellidos}}</span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-location"></i>
+    Dirección:
+    <span class="badge badge-stable">{{producto.socio[0].socio_direccion}}</span>
+  </a>
+   <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-ios-telephone"></i>
+    Teléfono:
+    <span class="badge badge-stable">{{producto.socio[0].socio_telefono}}</span>
+  </a>
+  <a class="item item-icon-left item-icon-right" href="#">
+    <i class="icon ion-email"></i>
+    Email:
+    <span class="badge badge-stable">{{producto.socio[0].socio_email}}</span>
+  </a>
+</div>
+  </ion-content>
+</ion-view>

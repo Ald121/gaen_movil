@@ -1,0 +1,45 @@
+<ion-view view-title="Detalles">
+ <ion-nav-buttons side="primary">
+   <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button>
+ </ion-nav-buttons>
+  <ion-content>
+  <!-- <div class="list">
+    <div class="item item-avatar item-button-right" ng-repeat="producto in productos_carrito">
+      <img ng-src="{{producto.img}}">
+      <h2>{{producto.nombre_producto}}</h2>
+      <p style="color: #33cd5f;">Cantidad: {{producto.cantidad}}</p>
+      <button class="button button-outline button-assertive" style="margin-top: 7px;" ng-click="remove_producto(producto)">
+      <i class="icon ion-close-circled"></i>
+    </button>
+    </div>
+	</div> -->
+ <div class="row header" style="text-align: right; background: white;">
+          <div class="col">Producto</div>
+          <div class="col">Precio/u</div>
+          <div class="col">Cantidad</div>
+          <div class="col">Precio</div>
+          <div class="col"></div>
+        </div>
+        <div class="row" style="text-align: right; background: white;" ng-repeat="producto in productos_carrito">
+          <div class="col">
+      		<img ng-src="{{producto.img}}" width="50">
+          </div>
+          <div class="col">{{'$ '+producto.precio_venta}}</div>
+          <div class="col"><p style="color: #33cd5f;">{{producto.cantidad}}</p></div>
+          <div class="col">{{'$ '+producto.cantidad*producto.precio_venta}}</div>
+          <div class="col">
+          <button class="button button-outline button-assertive" ng-click="remove_producto(producto)">
+		      <i class="icon ion-close-circled"></i>
+		  </button>
+    	  </div>
+        </div>
+
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-stable">
+  
+  <h1 class="title"></h1>
+   <div class="buttons" ng-click="doSomething()">
+    <button class="button button-positive"><i class="icon ion-social-usd"></i> Realizar Pago</button>
+  </div>
+</ion-footer-bar>
+</ion-view>

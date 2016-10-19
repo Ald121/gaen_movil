@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,servicioscatalogo) {
+  $rootScope.productos_carrito=[];
 // ionic.Platform.ready(function() {
 //     StatusBar.hide();
 //   });
@@ -10,6 +11,10 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $scope.productos=[{img:'/img/loader.gif'}];
+  servicioscatalogo.get_productos().get().$promise.then(function(data){
+    $scope.productos=data.respuesta;
+  });
 
  $scope.groups = [{name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
                   {name:'Ingresar',items:[],click:'S',link:'#/app/login',icon:'ion-person'},
@@ -59,18 +64,20 @@ angular.module('starter.controllers', [])
   $scope.close_app=function(){
     navigator.app.exitApp();
   }
+$scope.add_car=function(producto){
+    var index=$rootScope.productos_carrito.indexOf(producto);
+    if (index==-1) {
+      producto['cantidad']=1;
+      $rootScope.productos_carrito.push(producto);
+    }else{
+      producto['cantidad']=producto['cantidad']+1
+    }
+  }
+
 })
 
 .controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+  
 })
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+// .controller('PlaylistCtrl', function($scope, $stateParams) {
+// });
