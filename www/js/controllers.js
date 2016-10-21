@@ -70,7 +70,9 @@ $scope.add_car=function(producto){
       producto['cantidad']=1;
       $rootScope.productos_carrito.push(producto);
     }else{
-      producto['cantidad']=producto['cantidad']+1
+      if (producto['cantidad']<producto['stock']) {
+        producto['cantidad']=producto['cantidad']+1
+      }
     }
   }
 

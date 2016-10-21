@@ -6,7 +6,7 @@ app.service('servicios', function($resource) {
         return {
             appGaen: function() {
                 // return "http://186.33.168.251/appnext/";
-                return "http://192.168.0.109/serviciosGaen/";
+                return "http://192.168.0.110/serviciosGaen/";
             }
         }
     };
