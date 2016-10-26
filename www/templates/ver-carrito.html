@@ -1,18 +1,11 @@
-<ion-view view-title="Detalles">
-    <ion-nav-buttons side="primary">
-        <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button>
+<ion-view hide-back-button="false" view-title="Detalles">
+  <ion-nav-buttons side="primary">
+    <a class="button button-positive" href="#">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>
+    <!-- <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button> -->
     </ion-nav-buttons>
     <ion-content>
-        <!-- <div class="list">
-    <div class="item item-avatar item-button-right" ng-repeat="producto in productos_carrito">
-      <img ng-src="{{producto.img}}">
-      <h2>{{producto.nombre_producto}}</h2>
-      <p style="color: #33cd5f;">Cantidad: {{producto.cantidad}}</p>
-      <button class="button button-outline button-assertive" style="margin-top: 7px;" ng-click="remove_producto(producto)">
-      <i class="icon ion-close-circled"></i>
-    </button>
-    </div>
-  </div> -->
         <div class="row header" style="text-align: right; background: white;">
             <div class="col">Producto</div>
             <div class="col">Precio/u</div>
@@ -66,7 +59,9 @@
     <ion-footer-bar align-title="left" class="bar-stable">
         <h1 class="title"></h1>
         <div class="buttons" ng-click="doSomething()">
-            <button class="button button-positive"><i class="icon ion-arrow-right-c"></i> Continuar</button>
+        <a class="button button-positive" href="#/app/direccion" ng-disabled="productos_carrito.length==0">
+            Continuar <i class="icon ion-arrow-right-c" ></i>
+          </a>
         </div>
     </ion-footer-bar>
 </ion-view>

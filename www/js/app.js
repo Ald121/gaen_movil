@@ -6,9 +6,19 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 
                             'starter.controllers',
-                            'ngResource'])
+                            'ngResource',
+                            'ngStorage'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope,$localStorage) {
+  if ($localStorage.token) {
+    $rootScope.direccion=true;
+    $rootScope.loginstatus=false;
+  }else
+  {
+    $rootScope.direccion=false;
+    $rootScope.loginstatus=true;
+  }
+  
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,7 +29,7 @@ angular.module('starter', ['ionic',
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
     }
   });
 })
@@ -38,7 +48,8 @@ angular.module('starter', ['ionic',
     url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/login.html'
+        templateUrl: 'templates/login.html',
+        controller:'login-RegistroController'
       }
     }
   })
@@ -92,6 +103,25 @@ angular.module('starter', ['ionic',
       views: {
         'menuContent': {
           templateUrl: 'templates/ver-carrito.html',
+          controller: 'VerCarritoController'
+        }
+      }
+    })
+  .state('app.direccion', {
+      url: '/direccion',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/direccion-envio.html',
+          controller: 'VerCarritoController'
+        }
+      }
+    })
+
+  .state('app.cuenta-banco', {
+      url: '/cuenta-banco',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/cuenta-banco.html',
           controller: 'VerCarritoController'
         }
       }

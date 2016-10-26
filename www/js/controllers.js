@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,servicioscatalogo) {
+.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,servicioscatalogo,$localStorage) {
   $rootScope.productos_carrito=[];
 // ionic.Platform.ready(function() {
 //     StatusBar.hide();
@@ -16,8 +16,7 @@ angular.module('starter.controllers', [])
     $scope.productos=data.respuesta;
   });
 
- $scope.groups = [{name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
-                  {name:'Ingresar',items:[],click:'S',link:'#/app/login',icon:'ion-person'},
+ $rootScope.groups = [{name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
                   {name:'Realizar Pago',items:[],click:'S',link:'#/app/pagar',icon:'ion-card'},
                   {name:'Quiénes Somos',items:[],click:'S',link:'#/app/quienes-somos',icon:'ion-information-circled'},
                   {name:'Productos',items:['Bolsos','Artesanias'],icon:'ion-bag'},
@@ -64,6 +63,13 @@ angular.module('starter.controllers', [])
   $scope.close_app=function(){
     navigator.app.exitApp();
   }
+
+$scope.logout=function(){
+   $localStorage.$reset();
+   $rootScope.loginstatus=true;
+   $rootScope.direccion=false;
+  }
+
 $scope.add_car=function(producto){
     var index=$rootScope.productos_carrito.indexOf(producto);
     if (index==-1) {

@@ -1,0 +1,34 @@
+<ion-view hide-back-button="false" view-title="Deposito">
+    <ion-nav-buttons side="primary">
+    <a class="button button-positive" href="#">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>
+    <!-- <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button> -->
+    </ion-nav-buttons>
+    <ion-content>
+    <div class="list card" >
+  <div class="item positive" style="text-align: center;">
+  <div class="item item-divider">
+    <i class="icon ion-android-people"></i> {{deposito.nombre}}
+  </div>
+  <i class="icon ion-social-usd calm" style="font-size: 60px;"></i> 
+  </div> 
+  <div class="item positive">DATOS PARA REALIZAR EL PAGO 
+  <br>Monto a depositar : <div class="assertive">${{total}}</div>
+  <br>Banco : <div class="assertive">{{deposito.banco}}</div>
+  <br>Tipo de Cuenta : <div class="assertive">{{deposito.Tipo_cuenta}}</div>
+  <br># de cuenta: <div class="assertive">{{deposito.cuenta_banco}}</div>
+  <br>A nombre del Señor: <div class="assertive">{{deposito.propietario}}</div>
+  </div>
+
+</div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-stable">
+        <h1 class="title"></h1>
+        <div class="buttons" ng-click="actualizar_dataUser()">
+        <a class="button button-positive" href="#/app/cuenta-banco" >
+            <i class="icon ion-checkmark-round"></i> Confirmar 
+          </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

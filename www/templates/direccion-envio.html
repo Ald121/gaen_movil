@@ -1,0 +1,74 @@
+<ion-view hide-back-button="false" view-title="Direccion">
+    <ion-nav-buttons side="primary">
+    <a class="button button-positive" href="#">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>
+    <!-- <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button> -->
+    </ion-nav-buttons>
+    <ion-content>
+    <form name="form_datosUser">
+    <div class="list card" ng-show="direccion">
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive positive">Cédula</span>
+    <input type="text" ng-model="datos.idcliente" placeholder="John" disabled required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Nombres</span>
+    <input type="text" name="nombres" ng-model="datos.nombres" placeholder="Smith" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Apellidos</span>
+    <input type="text" name="apellidos" ng-model="datos.apellidos" placeholder="Alvarez" required>
+  </label>
+  <div class="item row">
+    <div class="col"><ion-radio class="positive" ng-click="change_genero(choice)" ng-model="choice" ng-value="'f'" >Femenino</ion-radio></div>
+    <div class="col"><ion-radio class="positive"  ng-click="change_genero(choice)" ng-model="choice" ng-value="'m'" >Masculino</ion-radio></div>
+  </div>
+  <label class="item item-select" >
+        <span class="input-label positive">Provincia</span>
+        <img src="img/loader.gif" ng-if="provincias.length==0" style="float: right;">
+        <select  name="provincia" ng-options="opt.nombre_provincia as opt.nombre_provincia for opt in provincias" name="provincia" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
+        <span class="assertive" ng-show="form_datosUser.provincia.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Provincia</span>
+  </label>
+  <label class="item item-select" >
+        <img src="img/loader.gif" ng-if="ciudades.length==0" style="float: right;">
+        <span class="input-label positive">Ciudad</span>
+        <select  ng-options="opt.nombre_ciudad as opt.nombre_ciudad for opt in ciudades | filter:{ nombre_provincia : selectedProv }" ng-change="change_ciu(selectedCiud)" name="ciudad" ng-model="selectedCiud" ng-if="ciudades.length>0" required></select>
+        <span class="assertive" ng-show="form_datosUser.ciudad.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Ciudad</span>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Dirección</span>
+    <input type="text" name="direccion" ng-model="datos.direccion" placeholder="Av. XYZ, 266,Av. Ruiz" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Email</span>
+    <input type="text" name="email" ng-model="datos.email" placeholder="john@suhr.com" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Fecha de Nacimiento </span>
+    <input type="date" name="fecha_nacimiento" ng-model="datos.fecha_nacimiento" placeholder="999-99-99">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Telefono</span>
+    <input type="text" name="telefono" ng-model="datos.telefono" placeholder="062999-999" required>
+  </label>
+</div>
+<div class="list card" ng-show="!direccion">
+  <div class="item positive" style="text-align: center;"><i class="icon ion-alert-circled" style="font-size: 80px;"></i><br>DEBES ESTAR REGISTRADO <br>PARA CONTINUAR</div> 
+  <label class="item" style="text-align: center;">
+    <a class="button button-outline button-positive" href="#/app/Registro" >
+      <i class="icon ion-person-add" ></i> Registrarse 
+    </a>
+  </label>
+</div>
+</form>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-stable">
+        <h1 class="title"></h1>
+        <div class="buttons" ng-click="actualizar_dataUser()">
+        <a class="button button-positive" href="#/app/cuenta-banco" >
+            Continuar <i class="icon ion-arrow-right-c" ></i>
+          </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

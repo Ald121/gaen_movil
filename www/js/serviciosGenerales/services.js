@@ -11,4 +11,42 @@ app.service('servicios', function($resource) {
         }
     };
 
+    var ipserver=this.server();
+    ipserver=ipserver.appGaen();
+    // get Localizacion
+    this.localizacion = function() {
+    	return {
+            provincias: function() {
+              return $resource(ipserver+'public/getProvincias', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
+            },
+
+            ciudades: function() {
+              return $resource(ipserver+'public/getCiudades', {}
+			        , {
+			            get: {
+			                method: 'POST', isArray: false
+			            }
+			        });
+            }
+        }
+    };
+
+     this.pagos=function() {
+        return {
+            datos_deposito: function() {
+              return $resource(ipserver+'public/getDatosDeposito', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
+            }
+        }
+    };
+
 });
