@@ -2,8 +2,8 @@
     <ion-nav-buttons side="primary">
     <a class="button button-positive" href="#">
             <i class="icon ion-home"></i>&nbsp;
-          </a>
-    <!-- <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button> -->
+          </a>&nbsp;
+    <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
     </ion-nav-buttons>
     <ion-content>
     <div class="list card" >
@@ -11,7 +11,7 @@
   <div class="item item-divider">
     <i class="icon ion-android-people"></i> {{deposito.nombre}}
   </div>
-  <i class="icon ion-social-usd calm" style="font-size: 60px;"></i> 
+  <!-- <i class="icon ion-social-usd calm" style="font-size: 60px;"></i>  -->
   </div> 
   <div class="item positive">DATOS PARA REALIZAR EL PAGO 
   <br>Monto a depositar : <div class="assertive">${{total}}</div>
@@ -25,9 +25,9 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-stable">
         <h1 class="title"></h1>
-        <div class="buttons" ng-click="actualizar_dataUser()">
-        <a class="button button-positive" href="#/app/cuenta-banco" >
-            <i class="icon ion-checkmark-round"></i> Confirmar 
+        <div class="buttons" ng-click="calc_total()">
+        <a class="button button-positive" href="#/app/confirmar-pedido" >
+            Continuar <i class="icon ion-arrow-right-c" ></i>
           </a>
         </div>
     </ion-footer-bar>

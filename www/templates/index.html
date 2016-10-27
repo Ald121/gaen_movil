@@ -11,13 +11,13 @@
   <div class="list card" ng-repeat="producto in productos">
   <div class="item item-avatar">
     <img ng-src="{{producto.img}}">
-    <h2>{{producto.nombre_producto}}</h2>
+    <a href="#/app/ver-mas/{{producto.idproducto}}" style="text-decoration: none;"><h2>{{producto.nombre_producto}}</h2></a>
     <p>{{producto.socio[0].socio_nombres+' '+producto.socio[0].socio_apellidos+' '+producto.fecha_add}}</p>
     <span class="badge badge-positive" style="font-size: 25px; padding: 10px;">{{'$ '+producto.precio}}</span>
   </div>
   <div class="item item-body">
     <div style="text-align: center;">
-    <img class="half-image" ng-src="{{producto.img}}">
+    <a href="#/app/ver-mas/{{producto.idproducto}}" ><img class="half-image" ng-src="{{producto.img}}"></a>
     </div>
     <ul class="list">
     <li class="item">
@@ -34,7 +34,7 @@
       <a href="#/app/ver-mas/{{producto.idproducto}}" class="button button-outline button-positive">
         <i class="icon ion-ios-eye"></i> Ver más
       </a>
-      <a href="#" class="button button-outline button-balanced" ng-click="add_car(producto)">
+      <a href="#" class="button button-outline button-balanced" ng-click="add_car(producto)" ng-disabled="producto.stock==0">
         <i class="icon ion-android-cart"></i> Añadir
       </a>
     </p>

@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-.controller('VerCarritoController', function(servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.controller('VerCarritoController', function(serviciosPedidos,servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
 
 $scope.provincias=[];
 $scope.ciudades=[];
+$scope.empresas_envio=[{nombre_empresa:'Servientrega'},{nombre_empresa:'Correos del Ecuador'}];
 servicios.localizacion().provincias().get().$promise.then(function(data){
   $scope.provincias=data.repuesta;
 });
@@ -12,26 +13,28 @@ servicios.localizacion().ciudades().get().$promise.then(function(data){
 });
 
 
-if ($localStorage.token) {
-  $rootScope.direccion=true;
-  $scope.datosUser=$localStorage.datosUser;
-  $scope.fecha=new Date($scope.datosUser.fecha_nacimiento);
-  $scope.choice = $scope.datosUser.sexo;
-  $scope.selectedCiud = $scope.datosUser.nombre_ciudad;
-  $scope.selectedProv = $scope.datosUser.nombre_provincia;
+if ($rootScope.direccion) {
+  $rootScope.datosUser=$rootScope.datosUser;
+  $scope.fecha=new Date($rootScope.datosUser.fecha_nacimiento);
+  $scope.choice = $rootScope.datosUser.sexo;
+  $scope.selectedCiud = $rootScope.datosUser.nombre_ciudad;
+  $scope.selectedProv = $rootScope.datosUser.nombre_provincia;
+  $scope.selectedEmpresa=$rootScope.datosUser.nombre_empresa;
 
   $scope.datos={
-  idcliente:$scope.datosUser.idcliente,
-  nombres:$scope.datosUser.nombres,
-  apellidos:$scope.datosUser.apellidos,
-  direccion:$scope.datosUser.direccion,
-  email:$scope.datosUser.email,
+  idcliente:$rootScope.datosUser.idcliente,
+  nombres:$rootScope.datosUser.nombres,
+  apellidos:$rootScope.datosUser.apellidos,
+  direccion:$rootScope.datosUser.direccion,
+  email:$rootScope.datosUser.email,
   fecha_nacimiento:$scope.fecha,
-  telefono:$scope.datosUser.telefono,
-  sexo:$scope.datosUser.sexo,
+  telefono:$rootScope.datosUser.telefono,
+  sexo:$rootScope.datosUser.sexo,
   nombre_provincia:$scope.selectedProv,
-  nombre_ciudad:$scope.selectedCiud
+  nombre_ciudad:$scope.selectedCiud,
+  nombre_empresa:$scope.selectedEmpresa
   }
+  // console.log($scope.datos);
 
 }
 $scope.subtotal=0;
@@ -47,6 +50,7 @@ var suma=0;
 }
 $scope.subtotal=suma;
 $scope.total=(suma+4.99).toFixed(2);
+// console.log($scope.total);
 }
 
 $scope.remove_producto=function(producto){
@@ -98,6 +102,12 @@ var index=$rootScope.productos_carrito.indexOf(producto);
     $scope.datos.sexo=choice;
     $scope.choice = choice;
     $scope.actualizar_dataUser();
+  }
+
+  $scope.confirmar_pedido=function(){
+    serviciosPedidos.confirmar_pedido().send({usuario:$scope.datos,productos:$rootScope.productos_carrito,total:$scope.total}).$promise.then(function(data){
+      console.log(data.respuesta);
+    });
   }
 
   servicios.pagos().datos_deposito().get().$promise.then(function(data){

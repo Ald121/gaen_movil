@@ -6,6 +6,8 @@ serviciosLoginRegistro.login().send({usuario:user,pass_app:pass}).$promise.then(
 $localStorage.token=data.token;
 $localStorage.datosUser=data.respuesta;
 $rootScope.loginstatus=false;
+$rootScope.direccion=true;
+$rootScope.datosUser=$localStorage.datosUser;
  $state.go('app.inicio');
 },function(error){
   if (error.status==401) {

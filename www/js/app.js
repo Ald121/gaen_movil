@@ -126,6 +126,15 @@ angular.module('starter', ['ionic',
         }
       }
     })
+  .state('app.confirmar-pedido', {
+      url: '/confirmar-pedido',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/confirmar-pedido.html',
+          controller: 'VerCarritoController'
+        }
+      }
+    })
 
     .state('app.inicio', {
       url: '/inicio',

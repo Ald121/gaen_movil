@@ -2,12 +2,18 @@
     <ion-nav-buttons side="primary">
     <a class="button button-positive" href="#">
             <i class="icon ion-home"></i>&nbsp;
-          </a>
-    <!-- <button class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</button> -->
+          </a>&nbsp;
+    <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
     </ion-nav-buttons>
     <ion-content>
     <form name="form_datosUser">
     <div class="list card" ng-show="direccion">
+    <label class="item item-select" >
+        <span class="input-label positive">Empresa de Envío</span>
+        <img src="img/loader.gif" ng-if="empresas_envio.length==0" style="float: right;">
+        <select  name="envio" ng-options="opt.nombre_empresa as opt.nombre_empresa for opt in empresas_envio" ng-model="selectedEmpresa" ng-change="change_empresa(selectedEmpresa)" ng-if="empresas_envio.length>0" required></select>
+        <span class="assertive" ng-show="form_datosUser.envio.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Empresa para el Envío</span>
+  </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label positive positive">Cédula</span>
     <input type="text" ng-model="datos.idcliente" placeholder="John" disabled required>
@@ -27,7 +33,7 @@
   <label class="item item-select" >
         <span class="input-label positive">Provincia</span>
         <img src="img/loader.gif" ng-if="provincias.length==0" style="float: right;">
-        <select  name="provincia" ng-options="opt.nombre_provincia as opt.nombre_provincia for opt in provincias" name="provincia" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
+        <select  name="provincia" ng-options="opt.nombre_provincia as opt.nombre_provincia for opt in provincias" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
         <span class="assertive" ng-show="form_datosUser.provincia.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Provincia</span>
   </label>
   <label class="item item-select" >
@@ -54,19 +60,22 @@
   </label>
 </div>
 <div class="list card" ng-show="!direccion">
-  <div class="item positive" style="text-align: center;"><i class="icon ion-alert-circled" style="font-size: 80px;"></i><br>DEBES ESTAR REGISTRADO <br>PARA CONTINUAR</div> 
-  <label class="item" style="text-align: center;">
-    <a class="button button-outline button-positive" href="#/app/Registro" >
+  <div class="item assertive" style="text-align: center;"><i class="icon ion-alert-circled" style="font-size: 80px;"></i><br>DEBES ESTAR REGISTRADO <br>PARA CONTINUAR</div> 
+  <div class="item" style="text-align: center;">
+    <a href="#/app/Registro" class="button button-outline button-assertive" >
       <i class="icon ion-person-add" ></i> Registrarse 
     </a>
-  </label>
+    <a href="#/app/login" class="button button-outline button-assertive" >
+      <i class="icon ion-unlocked"></i> Ingresar 
+    </a>
+  </div>
 </div>
 </form>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-stable">
         <h1 class="title"></h1>
-        <div class="buttons" ng-click="actualizar_dataUser()">
-        <a class="button button-positive" href="#/app/cuenta-banco" >
+        <div class="buttons" ng-click="calc_total()">
+        <a class="button button-positive" href="#/app/cuenta-banco" ng-disabled="!datos">
             Continuar <i class="icon ion-arrow-right-c" ></i>
           </a>
         </div>

@@ -12,50 +12,57 @@
   </div>
   <div class="item item-body">
     <div style="text-align: center;">
-    <img ng-src="{{producto.img}}" ng-click="showImages($index)" class="image-list-thumb"/>
+    {{$index}}
+    <img ng-src="{{producto.img}}" ng-click="showImages()" class="image-list-thumb"/>
     </div>
     <p>
       {{producto.descripcion}}
     </p>
   </div>
-  <a class="item item-icon-left" href="#">
+  <div class="item item-button-right" href="#">
+      <button class="button button-outline button-balanced" ng-click="add_car(producto)" ng-disabled="producto.stock==0">
+        <i class="icon ion-android-cart"></i> Añadir
+      </button>
+      <br>
+  </div>
+  <div class="item item-icon-left" href="#">
     <i class="icon ion-arrow-resize"></i>
     Talla
     <span class="badge badge-positive">{{producto.detalles[0].nombre_material}}</span>
-  </a>
-  <a class="item item-icon-left" href="#">
+  </div>
+  <div class="item item-icon-left" href="#">
     <i class="icon ion-android-color-palette"></i>
     Color
     <span class="badge badge-stable">{{producto.nombre_color}}</span>
-  </a>
-  <a class="item item-icon-left item-icon-right" href="#">
+  </div>
+  <div class="item item-icon-left item-icon-right" href="#">
     <i class="icon ion-briefcase"></i>
     Stock
     <span class="badge badge-balanced">{{producto.stock}}</span>
-  </a>
+  </div>
   <div class="item item-divider">
    <i class="icon ion-person"></i> ARTESANO
   </div>
-  <a class="item item-icon-left item-icon-right" href="#">
+  <div class="item item-icon-left item-icon-right" href="#">
     <i class="icon ion-ios-person-outline"></i>
     Nombres Apellidos:
     <span class="badge badge-stable">{{producto.socio[0].socio_nombres+' '+producto.socio[0].socio_apellidos}}</span>
-  </a>
-  <a class="item item-icon-left item-icon-right" href="#">
+  </div>
+  <div class="item item-icon-left item-icon-right" href="#">
     <i class="icon ion-location"></i>
     Dirección:
     <span class="badge badge-stable">{{producto.socio[0].socio_direccion}}</span>
-  </a>
-   <a class="item item-icon-left item-icon-right" href="#">
+  </div>
+   <div class="item item-icon-left item-icon-right" href="#">
     <i class="icon ion-ios-telephone"></i>
     Teléfono:
     <span class="badge badge-stable">{{producto.socio[0].socio_telefono}}</span>
-  </a>
-  <a class="item item-icon-left item-icon-right" href="#">
+  </div>
+  <div class="item item-icon-left item-icon-right" href="#">
     <i class="icon ion-email"></i>
     Email:
     <span class="badge badge-stable">{{producto.socio[0].socio_email}}</span>
-  </a>
+  </div>
 </div>
   </ion-content>
 </ion-view>

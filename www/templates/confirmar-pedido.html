@@ -2,8 +2,8 @@
   <ion-nav-buttons side="primary">
     <a class="button button-positive" href="#">
             <i class="icon ion-home"></i>&nbsp;
-          </a>
-    <!-- <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a> -->
+          </a>&nbsp;
+    <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
     </ion-nav-buttons>
     <ion-content>
         <div class="row header" style="text-align: right; background: white;">
@@ -11,7 +11,6 @@
             <div class="col">Precio/u</div>
             <div class="col">Cantidad</div>
             <div class="col">Precio</div>
-            <div class="col"></div>
         </div>
         <div class="row" style="text-align: right; background: white; border-top: 1px solid #c2c2c2;" ng-repeat="producto in productos_carrito">
             <div class="col">
@@ -19,48 +18,38 @@
             </div>
             <div class="col">{{'$ '+producto.precio_venta}}</div>
             <div class="col">
-                <button style="float: left;" ng-click="menos_cantidad(producto)">
-                    <i class="icon ion-minus"></i>
-                </button>
-                <div style="color: #33cd5f;  float: left; text-align: center; width: 54%;">{{producto.cantidad}}</div>
-                <button style="position: absolute;" ng-click="mas_cantidad(producto)">
-                    <i class="icon ion-plus"></i>
-                </button>
+                <div style="color: #33cd5f;  float: right; text-align: center; width: 54%;">{{producto.cantidad}}</div>
             </div>
             <div class="col">{{'$ '+producto.cantidad*producto.precio_venta}}</div>
-            <div class="col">
-                <button class="button button-outline button-assertive" ng-click="remove_producto(producto)">
-                    <i class="icon ion-close-circled"></i>
-                </button>
-            </div>
         </div>
 
         <div class="list">
           <div class="item item-divider item-button-right">
+          <span class="item-note calm"><i class="icon ion-information-circled"></i> MANEJO Y ENVÍO: Envío de 1 a 4 días.</span>
           </div>
-          <!-- <a class="item item-icon-left" href="#">
-            <span class="item-note">
+          <a class="item item-icon-left" href="#">
+            <span class="item-note positive">
               Envio: $ 4.99
             </span>
-          </a> -->
+          </a>
           <a class="item item-icon-left" href="#">
             <span class="item-note positive">
               Subtotal: $ {{subtotal}}
             </span>
           </a>
-          <!-- <a class="item item-icon-left" href="#">
-            <span class="item-note">
+          <a class="item item-icon-left" href="#">
+            <span class="item-note positive">
               Total: $ {{total}}
             </span>
-          </a> -->
+          </a>
         </div>
 
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-stable">
         <h1 class="title"></h1>
-        <div class="buttons" ng-click="calc_total()">
-        <a class="button button-positive" href="#/app/direccion" ng-disabled="productos_carrito.length==0">
-            Continuar <i class="icon ion-arrow-right-c" ></i>
+        <div class="buttons" ng-click="confirmar_pedido()">
+          <a class="button button-positive" >
+            <i class="icon ion-checkmark-round"></i> Confirmar 
           </a>
         </div>
     </ion-footer-bar>
