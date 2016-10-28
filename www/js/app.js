@@ -7,7 +7,8 @@
 angular.module('starter', ['ionic', 
                             'starter.controllers',
                             'ngResource',
-                            'ngStorage'])
+                            'ngStorage',
+                            'angularFileUpload'])
 
 .run(function($ionicPlatform,$rootScope,$localStorage) {
   if ($localStorage.token) {
@@ -54,11 +55,12 @@ angular.module('starter', ['ionic',
     }
   })
 
-  .state('app.pagar', {
-      url: '/pagar',
+  .state('app.mis-pedidos', {
+      url: '/mis-pedidos',
       views: {
         'menuContent': {
-          templateUrl: 'templates/pagar.html'
+          templateUrl: 'templates/mis-pedidos.html',
+          controller:'pedidosController'
         }
       }
     })
@@ -75,7 +77,8 @@ angular.module('starter', ['ionic',
       url: '/galeria',
       views: {
         'menuContent': {
-          templateUrl: 'templates/galeria.html'
+          templateUrl: 'templates/galeria.html',
+          controller:'GaleriaController'
         }
       }
     })
@@ -83,7 +86,8 @@ angular.module('starter', ['ionic',
       url: '/contactos',
       views: {
         'menuContent': {
-          templateUrl: 'templates/contactos.html'
+          templateUrl: 'templates/contactos.html',
+          controller:'contactosController'
         }
       }
     })

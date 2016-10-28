@@ -22,6 +22,10 @@
               <i class="icon ion-person"></i>
               Ingresar
       </ion-item>
+      <ion-item ng-show='!loginstatus' ng-click="logout()">
+              <div class="button button-clear button-positive">
+              <i class="icon ion-power"></i> Cerrar Sesión</div>
+      </ion-item>
         <div ng-repeat="group in groups">
           <ion-item ng-show='group.items.length!=0' class="item-stable"
                     ng-click="toggleGroup(group)">
@@ -40,9 +44,9 @@
             {{item}}
           </ion-item>
         </div>
-        <ion-item ng-show='!loginstatus' ng-click="logout()">
-              <div class="button button-clear button-positive">
-              <i class="icon ion-power"></i> Cerrar Sesión</div>
+      <ion-item ng-show='!loginstatus' menu-close href="#/app/mis-pedidos">
+              <i class="icon ion-bag"></i>
+              Mis Pedidos/Subir Pago
       </ion-item>
       <ion-item menu-close ng-click="close_app()">
               <i class="icon ion-close"></i>

@@ -49,4 +49,13 @@ app.service('servicios', function($resource) {
         }
     };
 
+     this.galeria=function() {
+              return $resource(ipserver+'public/getGaleria', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
+    };
+
 });

@@ -11,15 +11,16 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  $scope.productos=[{img:'/img/loader.gif'}];
+  $rootScope.productos=[{img:'/img/loader.gif'}];
   servicioscatalogo.get_productos().get().$promise.then(function(data){
-    $scope.productos=data.respuesta;
+    $rootScope.productos=data.respuesta;
   });
 
- $rootScope.groups = [{name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
-                  {name:'Realizar Pago',items:[],click:'S',link:'#/app/pagar',icon:'ion-card'},
+ $rootScope.groups = [
+                  {name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
+                  // {name:'Mis Pedidos',items:[],click:'S',link:'#/app/pagar',icon:'ion-bag'},
                   {name:'Quiénes Somos',items:[],click:'S',link:'#/app/quienes-somos',icon:'ion-information-circled'},
-                  {name:'Productos',items:['Bolsos','Artesanias'],icon:'ion-bag'},
+                  {name:'Productos',items:['Bolsos','Artesanias'],icon:'ion-ios-box'},
                   {name:'Galeria',items:[],click:'S',link:'#/app/galeria',icon:'ion-image'},
                   {name:'Contactos',items:[],click:'S',link:'#/app/contactos',icon:'ion-email'}];
   

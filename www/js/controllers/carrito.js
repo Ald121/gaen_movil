@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('VerCarritoController', function(serviciosPedidos,servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.controller('VerCarritoController', function($state,$ionicPopup,serviciosPedidos,servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
 
 $scope.provincias=[];
 $scope.ciudades=[];
@@ -13,8 +13,11 @@ servicios.localizacion().ciudades().get().$promise.then(function(data){
 });
 
 
+$scope.cargar_datos=function(){
 if ($rootScope.direccion) {
-  $rootScope.datosUser=$rootScope.datosUser;
+  if ($localStorage.datosUser) {
+    $rootScope.datosUser=$localStorage.datosUser;
+  }
   $scope.fecha=new Date($rootScope.datosUser.fecha_nacimiento);
   $scope.choice = $rootScope.datosUser.sexo;
   $scope.selectedCiud = $rootScope.datosUser.nombre_ciudad;
@@ -34,14 +37,16 @@ if ($rootScope.direccion) {
   nombre_ciudad:$scope.selectedCiud,
   nombre_empresa:$scope.selectedEmpresa
   }
-  // console.log($scope.datos);
-
 }
+}
+
 $scope.subtotal=0;
 $scope.total=0;
 
 
+
 $scope.calc_total=function(){
+  $scope.cargar_datos();
 	var multi=0;
 var suma=0;
 	for (var i = 0; i < $rootScope.productos_carrito.length; i++) {
@@ -107,8 +112,29 @@ var index=$rootScope.productos_carrito.indexOf(producto);
   $scope.confirmar_pedido=function(){
     serviciosPedidos.confirmar_pedido().send({usuario:$scope.datos,productos:$rootScope.productos_carrito,total:$scope.total}).$promise.then(function(data){
       console.log(data.respuesta);
+      if (data.respuesta) {
+        $scope.alerta();
+      }
     });
   }
+
+  $scope.alerta = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Correcto!',
+     template: ' <div class="energized" style="text-align: center;"><i class="icon ion-checkmark-circled" style="font-size: 50px;"></i><br>SU PEDIDO HA SIDO ENVIADO SATISFACTORIAMENTE TIENE 24 HRS PARA REALIZAR EL PAGO :)</div>'
+   });
+
+  alertPopup.then(function(res) {
+    $rootScope.productos_carrito=[];
+    
+    servicioscatalogo.get_productos().get().$promise.then(function(data){
+    $rootScope.productos=data.respuesta;
+      });
+
+     $state.go('app.inicio');
+   });
+
+ };
 
   servicios.pagos().datos_deposito().get().$promise.then(function(data){
   $scope.deposito=data.repuesta;

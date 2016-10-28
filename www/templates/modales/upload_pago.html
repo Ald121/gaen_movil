@@ -1,0 +1,22 @@
+  <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+        <input type="file" nv-file-select="" uploader="uploader" />
+        <ul>
+            <li ng-repeat="item in uploader.queue">
+<!--                 <div>Name: {{ item.file.name }}</div>
+                <div>Size: {{ item.file.size/1024/1024|number:2 }} Mb</div> -->
+                <div ng-show="uploader.isHTML5">
+                    Progreso: {{ item.progress }}
+                    <div class="item-progress-box">
+                        <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                </div>
+                <div ng-if="controller.isImage(item._file)">
+                        <div ng-thumb="{ file: item._file, height: 200 }"></div>
+                </div>
+                <div>
+                    <button ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Subir</button>
+                    <button ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancelar</button>
+                    <button ng-click="item.remove()">Eliminar</button>
+                </div>
+            </li>
+        </ul>

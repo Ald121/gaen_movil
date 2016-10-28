@@ -1,5 +1,19 @@
-<ion-view hide-back-button="false" view-title="Playlist">
+<ion-view hide-back-button="false" view-title="Galeria">
+<ion-nav-buttons side="primary">
+ <a class="button button-positive" href="#">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>&nbsp;
+   <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
+ </ion-nav-buttons>
   <ion-content>
-    <h1>galeria</h1>
+    <div class="item item-divider">
+          <i class="ion-images"></i>
+          GAEN
+        </div>
+        <a class="item item-list-detail">
+          <ion-scroll direction="x">
+            <img ng-repeat="image in allImages" ng-src="{{image.src}}" ng-click="showImages($index)" class="image-list-thumb"/>
+          </ion-scroll>
+        </a>
   </ion-content>
 </ion-view>

@@ -1,5 +1,36 @@
-<ion-view hide-back-button="false" view-title="Browse">
+<ion-view hide-back-button="false" view-title="Contactos">
+<ion-nav-buttons side="primary">
+ <a class="button button-positive" href="#">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>&nbsp;
+   <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a>
+ </ion-nav-buttons>
   <ion-content>
-    <h1>Contactos</h1>
+  	<div class="list card">
+  	<div class="item">
+    <h2>Horario</h2>
+  	</div>
+  	 <div class="item item-body" >
+  	 <div class="row" ng-class-odd="'item-divider positive'" ng-repeat="dia in horario" >
+		  <div class="col ">{{dia.dia}}</div>
+		  <div class="col ">{{dia.hora}}</div>
+	</div>
+  	 </div>
+  	 <div class="item">
+    <h2>Dirección</h2>
+  	</div>
+  	 <div class="item item-body" >
+	<div class="positive">Calle principal</div>La Dolorosa Parroquia de Máscarilla - Carchi <br>
+	<div class="positive">Email:</div> asociaciongaen6@hotmail.com / laraacosta310@gmail.com <br>
+	<div class="positive">Cel:</div> 0993161621 <br>
+	<div class="positive">Telf::</div> 062-562-079 
+  	 </div>
+<!--   	 <div class="item">
+    <h2>Ubicacion</h2>
+  	</div>
+  	 <div class="item item-body" >
+  	 <div id="map" style="width: 100%;  height: 100%;" data-tap-disabled="true"></div>
+  	 </div> -->
+  	</div>
   </ion-content>
 </ion-view>
