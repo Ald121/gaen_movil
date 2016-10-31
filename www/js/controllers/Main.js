@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,servicioscatalogo,$localStorage) {
+.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,servicioscatalogo,$localStorage,serviciosPedidos) {
   $rootScope.productos_carrito=[];
 // ionic.Platform.ready(function() {
 //     StatusBar.hide();
@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
                   {name:'Inicio',items:[],click:'S',link:'#/app/inicio',icon:'ion-home'},
                   // {name:'Mis Pedidos',items:[],click:'S',link:'#/app/pagar',icon:'ion-bag'},
                   {name:'Quiénes Somos',items:[],click:'S',link:'#/app/quienes-somos',icon:'ion-information-circled'},
-                  {name:'Productos',items:['Bolsos','Artesanias'],icon:'ion-ios-box'},
+                  // {name:'Productos',items:['Bolsos','Artesanias'],icon:'ion-ios-box'},
                   {name:'Galeria',items:[],click:'S',link:'#/app/galeria',icon:'ion-image'},
                   {name:'Contactos',items:[],click:'S',link:'#/app/contactos',icon:'ion-email'}];
   
@@ -81,6 +81,14 @@ $scope.add_car=function(producto){
         producto['cantidad']=producto['cantidad']+1
       }
     }
+  }
+
+  $scope.mis_pedidos=function(producto){
+
+  serviciosPedidos.mis_pedidos().get().$promise.then(function(data){
+  $scope.mis_pedidos=data.respuesta;
+  });   
+
   }
 
 })

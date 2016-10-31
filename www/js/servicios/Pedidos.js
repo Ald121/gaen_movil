@@ -6,7 +6,10 @@ app.service('serviciosPedidos', function($resource,servicios,$localStorage) {
         return $resource(servicios.server().appGaen()+'public/confirmarPedido', {}
         , {
             send: {
-                method: 'POST', isArray: false
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
             }
         });
     };

@@ -1,15 +1,25 @@
 angular.module('starter.controllers')
-.controller('pedidosController', function($scope,$rootScope,serviciosPedidos,servicios,$ionicPopup,$localStorage,$state,$timeout,FileUploader) {
+.controller('pedidosController', function($scope,$rootScope,serviciosPedidos,servicios,$ionicPopup,$localStorage,$state,$timeout,FileUploader,$state) {
 
 serviciosPedidos.mis_pedidos().get().$promise.then(function(data){
 $scope.mis_pedidos=data.respuesta;
+},function(error){
+	if (error.status==-1) {
+		var alertPopup = $ionicPopup.alert({
+     title: 'Error!',
+     template: '<div class="assertive" style="text-align: center;"><i class="icon ion-alert-circled" style="font-size: 50px;"></i><br>DEBES INICIAR SESIÓN NUEVAMENTE PARA CONTINUAR</div>'
+   });
+	alertPopup.then(function(res) {
+    	$state.go('app.login');
+  	});
+
+	}
 });
 
 $scope.showPopup = function(pedido) {
   $scope.data = {};
   $scope.pedido=pedido;
 
-  // An elaborate, custom popup
   $scope.myPopup = $ionicPopup.show({
     templateUrl: "templates/modales/upload_pago.html",
     title: 'Subir Deposito',
