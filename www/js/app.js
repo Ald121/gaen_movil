@@ -54,6 +54,15 @@ angular.module('starter', ['ionic',
       }
     }
   })
+  .state('app.registro', {
+    url: '/Registro',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/registro.html',
+        controller:'login-RegistroController'
+      }
+    }
+  })
 
   .state('app.mis-pedidos', {
       url: '/mis-pedidos',

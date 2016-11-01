@@ -22,6 +22,10 @@
               <i class="icon ion-person"></i>
               Ingresar
       </ion-item>
+       <ion-item ng-show='loginstatus' menu-close href="#/app/Registro">
+              <i class="icon ion-person-add"></i>
+              Registro
+      </ion-item>
       <ion-item ng-show='!loginstatus' ng-click="logout()">
               <div class="button button-clear button-positive">
               <i class="icon ion-power"></i> Cerrar Sesión</div>

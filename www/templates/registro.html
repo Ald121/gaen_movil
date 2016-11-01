@@ -1,0 +1,65 @@
+<ion-view hide-back-button="false" view-title="Ingresar"m >
+    <ion-content>
+        <div class="list card">
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive positive">Cédula</span>
+    <input type="text" ng-model="data.idcliente" placeholder="100XXXXXXX" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Nombres</span>
+    <input type="text" name="nombres" ng-model="data.nombres" placeholder="Smith" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Apellidos</span>
+    <input type="text" name="apellidos" ng-model="data.apellidos" placeholder="Alvarez" required>
+  </label>
+  <div class="item row">
+    <div class="col"><ion-radio class="positive" ng-click="change_genero(choice)" ng-model="data.choice" ng-value="'f'" >Femenino</ion-radio></div>
+    <div class="col"><ion-radio class="positive"  ng-click="change_genero(choice)" ng-model="data.choice" ng-value="'m'" >Masculino</ion-radio></div>
+  </div>
+  <label class="item item-select" >
+        <span class="input-label positive">Provincia</span>
+        <img src="img/loader.gif" ng-if="provincias.length==0" style="float: right;">
+        <select  name="provincia" ng-options="opt.nombre_provincia as opt.nombre_provincia for opt in provincias" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
+        <span class="assertive" ng-show="form_dataUser.provincia.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Provincia</span>
+  </label>
+  <label class="item item-select" >
+        <img src="img/loader.gif" ng-if="ciudades.length==0" style="float: right;">
+        <span class="input-label positive">Ciudad</span>
+        <select  ng-options="opt.nombre_ciudad as opt.nombre_ciudad for opt in ciudades | filter:{ nombre_provincia : selectedProv }" ng-change="change_ciu(selectedCiud)" name="ciudad" ng-model="selectedCiud" ng-if="ciudades.length>0" required></select>
+        <span class="assertive" ng-show="form_dataUser.ciudad.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Ciudad</span>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Dirección</span>
+    <input type="text" name="direccion" ng-model="data.direccion" placeholder="Av. XYZ, 266,Av. Ruiz" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Email</span>
+    <input type="text" name="email" ng-model="data.email" placeholder="john@suhr.com" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Fecha de Nacimiento </span>
+    <input type="date" name="fecha_nacimiento" ng-model="data.fecha_nacimiento" placeholder="999-99-99">
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Telefono</span>
+    <input type="text" name="telefono" ng-model="data.telefono" placeholder="062999-999" required>
+  </label>
+    <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Contraseña</span>
+    <input type="text" name="telefono" ng-model="data.pass" placeholder="062999-999" required>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label positive">Repita la Contraseña</span>
+    <input type="text" name="telefono" ng-model="pass2" placeholder="062999-999" required>
+    <span class="assertive" ng-show="data.pass!=pass2" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Contraseñas no coincide</span>
+  </label>
+  <label class="item row responsive-sm">
+    <button class="button button-positive " ng-click="registrar(data)">
+    <i class="icon ion-person-add"></i>
+  Registrarse
+  </button>
+  </label>
+</div>
+    </ion-content>
+</ion-view>
