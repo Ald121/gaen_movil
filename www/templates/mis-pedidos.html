@@ -1,8 +1,11 @@
 <ion-view hide-back-button="false" view-title="Mis Pedidos">
   <ion-nav-buttons side="primary">
-    <a class="button button-positive" href="#">
-            <i class="icon ion-home"></i>&nbsp;
-          </a>
+    <a class="button button-positive" href="#/app/inicio">
+            <i class="icon ion-home"></i>
+          </a>&nbsp;
+           <button class="button button-positive" ng-click=get_pedidos()>
+            <i class="icon ion-refresh"></i>
+          </button>
     <!-- <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a> -->
     </ion-nav-buttons>
     <ion-content>
@@ -24,9 +27,9 @@
             <div class="col">
                 <!-- <button ng-show="pedido.estado_p==0" class="button button-outline button-assertive" ng-click="remove_producto(producto)"> -->
                     <!-- <i class="icon ion-social-usd"></i> -->
-                <button ng-show="pedido.estado_p==0" class="button button-outline button-assertive" ng-click="showPopup(pedido)">
+                <a href="#/app/upload-pago/{{pedido.idpedido}}" ng-show="pedido.estado_p==0" class="button button-outline button-assertive" >
 	                 	 <i class="icon ion-upload" style="font-size: 35px;"></i>
-                </button>
+                </a>
                 <!-- </button> -->
                 <div ng-show="pedido.estado_p!=0" class="balanced" >
                     Pagado

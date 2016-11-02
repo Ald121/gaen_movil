@@ -121,7 +121,7 @@ var index=$rootScope.productos_carrito.indexOf(producto);
   $scope.alerta = function() {
    var alertPopup = $ionicPopup.alert({
      title: 'Correcto!',
-     template: ' <div class="energized" style="text-align: center;"><i class="icon ion-checkmark-circled" style="font-size: 50px;"></i><br>SU PEDIDO HA SIDO ENVIADO SATISFACTORIAMENTE TIENE 24 HRS PARA REALIZAR EL PAGO :)</div>'
+     template: '<div class="energized" style="text-align: center;"><i class="icon ion-checkmark-circled" style="font-size: 50px;"></i><br>SU PEDIDO HA SIDO ENVIADO SATISFACTORIAMENTE TIENE 24 HRS PARA REALIZAR EL PAGO :)</div>'
    });
 
   alertPopup.then(function(res) {

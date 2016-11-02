@@ -47,15 +47,15 @@
   </label>
     <label class="item item-input item-stacked-label">
     <span class="input-label positive">Contraseña</span>
-    <input type="text" name="telefono" ng-model="data.pass" placeholder="062999-999" required>
+    <input type="password" name="telefono" ng-model="data.pass" placeholder="XXXXXXXX" required>
   </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label positive">Repita la Contraseña</span>
-    <input type="text" name="telefono" ng-model="pass2" placeholder="062999-999" required>
-    <span class="assertive" ng-show="data.pass!=pass2" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Contraseñas no coincide</span>
+    <input type="password" name="telefono" ng-model="dato.pass2" placeholder="XXXXXXXX" required>
+    <span class="assertive" ng-show="data.pass!=dato.pass2" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Contraseñas no coincide</span>
   </label>
   <label class="item row responsive-sm">
-    <button class="button button-positive " ng-click="registrar(data)">
+    <button class="button button-positive " ng-click="registrar(data,dato)">
     <i class="icon ion-person-add"></i>
   Registrarse
   </button>

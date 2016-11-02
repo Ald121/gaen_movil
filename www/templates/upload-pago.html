@@ -1,0 +1,17 @@
+  <ion-view hide-back-button="false" view-title="Subir Pago">
+  <ion-nav-buttons side="primary">
+    <a class="button button-positive" href="#/app/inicio">
+            <i class="icon ion-home"></i>&nbsp;
+          </a>
+    <!-- <a href="#/app/ver-carrito" class="button button-outline button-balanced"><i class="icon ion-android-cart"></i>{{productos_carrito.length}}</a> -->
+    </ion-nav-buttons>
+    <ion-content>
+        <img ng-src="{{pathForImage(image)}}" style="width: 100%; height: 100%;">
+    </ion-content>
+<ion-footer-bar class="bar bar-positive">
+      <div class="button-bar">
+        <button class="button icon-left ion-camera" ng-click="loadImage()">Tomar Foto</button>
+        <button class="button icon-left ion-upload" ng-click="uploadImage()" ng-disabled="image === null">Subir</button>
+      </div>
+    </ion-footer-bar>
+</ion-view>

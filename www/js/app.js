@@ -8,7 +8,7 @@ angular.module('starter', ['ionic',
                             'starter.controllers',
                             'ngResource',
                             'ngStorage',
-                            'angularFileUpload'])
+                            'ngCordova'])
 
 .run(function($ionicPlatform,$rootScope,$localStorage) {
   if ($localStorage.token) {
@@ -155,6 +155,16 @@ angular.module('starter', ['ionic',
         'menuContent': {
           templateUrl: 'templates/index.html',
           controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+    .state('app.upload-pago', {
+      url: '/upload-pago/:idpedido',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/upload-pago.html',
+          controller: 'pedidosController'
         }
       }
     })
