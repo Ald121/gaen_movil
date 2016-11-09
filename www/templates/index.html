@@ -9,17 +9,14 @@
 <br>
 <br>
   <div class="list card" ng-repeat="producto in productos">
-  <div class="item item-avatar">
-    <img ng-src="{{producto.img}}">
+  <div class="item">
     <a href="#/app/ver-mas/{{producto.idproducto}}" style="text-decoration: none;"><h2>{{producto.nombre_producto}}</h2></a>
     <p>{{producto.socio[0].socio_nombres+' '+producto.socio[0].socio_apellidos+' '+producto.fecha_add}}</p>
     <span class="badge badge-positive" style="font-size: 25px; padding: 10px;">{{'$ '+producto.precio}}</span>
   </div>
-  <div class="item item-body">
-    <div style="text-align: center;">
-    <a href="#/app/ver-mas/{{producto.idproducto}}" ><img class="half-image" ng-src="{{producto.img}}"></a>
-    </div>
-    <ul class="list">
+  <div class="item item-body row">
+    <a href="#/app/ver-mas/{{producto.idproducto}}" ><img width="125" style="float: left; margin-left: 10px" ng-src="{{producto.img}}"></a>
+    <ul class="list col">
     <li class="item">
       TALLA: <span class="badge badge-positive">{{producto.detalles[0].nombre_material}}</span>
     </li>
@@ -30,6 +27,8 @@
       STOCK: <span class="badge badge-balanced">{{producto.stock}}</span>
     </li>
     </ul>
+  </div>
+  <div class="item">
     <p>
       <a href="#/app/ver-mas/{{producto.idproducto}}" class="button button-outline button-positive">
         <i class="icon ion-ios-eye"></i> Ver más
@@ -39,6 +38,7 @@
       </a>
     </p>
   </div>
+      
 </div>
   </ion-content>
 </ion-view>

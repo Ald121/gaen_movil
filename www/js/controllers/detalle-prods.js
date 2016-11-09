@@ -26,7 +26,7 @@ $scope.showModal = function(templateUrl) {
  
 $scope.closeModal = function() {
   $scope.modal.hide();
-  $scope.modal.remove()
+  $scope.modal.remove();
 };
  
 $scope.updateSlideStatus = function(slide) {
