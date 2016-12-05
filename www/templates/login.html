@@ -10,9 +10,10 @@
     <input type="password" ng-model="pass" placeholder="xxxxxxxxxxxx">
   </label>
   <br>
+    <div style="text-align: center;"><img src="img/loader.gif" width="25" ng-show="loginstatus"></div>
   <label class="item row responsive-sm">
-    <button class="button button-positive " ng-click="login(user,pass)">
-    <i class="icon ion-unlocked"></i>
+    <button class="button button-positive " ng-click="login(user,pass)" ng-show="!loginstatus">
+    <i class="icon ion-unlocked" ></i>
   Ingresar
   </button>&nbsp;
   </label>

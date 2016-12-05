@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 .controller('login-RegistroController', function(servicios,$scope,$rootScope,serviciosLoginRegistro,$ionicPopup,$localStorage,$state) {
 
+$scope.loginstatus=false;
 $scope.provincias={};
 servicios.localizacion().provincias().get().$promise.then(function(data){
   $scope.provincias=data.repuesta;
@@ -10,24 +11,47 @@ servicios.localizacion().ciudades().get().$promise.then(function(data){
 });
 
 $scope.login=function(user,pass){
+  $scope.loginstatus=true;
 serviciosLoginRegistro.login().send({usuario:user,pass_app:pass}).$promise.then(function(data){
 $localStorage.token=data.token;
 $localStorage.datosUser=data.respuesta;
 $rootScope.loginstatus=false;
 $rootScope.direccion=true;
 $rootScope.datosUser=data.respuesta;
+$scope.loginstatus=false;
+$scope.showAlertOk();
  $state.go('app.inicio');
 },function(error){
   if (error.status==401) {
-    $scope.showAlert();
+    $scope.loginstatus=false;
+    $scope.showAlertFail();
   }
 });
 }
 
- $scope.showAlert = function() {
+ $scope.showAlertFail = function() {
    var alertPopup = $ionicPopup.alert({
      title: 'Error!',
-     template: 'Usuario / Contraseña erroneos'
+     template: 'Usuario / Contraseña erroneos',
+      buttons: [
+                 {
+                   text: 'Ok',
+                   type: 'button-assertive'
+                 }
+                ]
+   });
+ };
+
+ $scope.showAlertOk = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Correcto !',
+     template: 'Bienvenid@ '+$localStorage.datosUser.nombres,
+     buttons: [
+                 {
+                   text: 'Ok',
+                   type: 'button-balanced'
+                 }
+              ]
    });
  };
 

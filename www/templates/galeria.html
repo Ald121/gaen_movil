@@ -10,10 +10,10 @@
           <i class="ion-images"></i>
           GAEN
         </div>
-        <a class="item item-list-detail">
-          <ion-scroll direction="x">
-            <img ng-repeat="image in allImages" ng-src="{{image.src}}" ng-click="showImages($index)" class="image-list-thumb"/>
-          </ion-scroll>
-        </a>
+        <a class="item item-list-detail" ng-repeat="image in allImages">
+          <!-- <ion-scroll direction="y"> -->
+          <img style="width: 99%;" ng-src="{{image.src}}" ng-click="showImages($index)" class="image-list-thumb"/>
+          <!-- </ion-scroll> -->
+        </a><br>
   </ion-content>
 </ion-view>

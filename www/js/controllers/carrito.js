@@ -44,7 +44,6 @@ $scope.subtotal=0;
 $scope.total=0;
 
 
-
 $scope.calc_total=function(){
   $scope.cargar_datos();
 	var multi=0;
