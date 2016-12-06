@@ -3,22 +3,16 @@ angular.module('starter.controllers')
 var idprod=$stateParams.id;
 
  $scope.allImages = [{
-    src: 'http://www.gaen.skn1.com/images/thumbs/1.jpg'
+    src: 'http://www.asociacion-gaen.com/galeria3/img/21.jpg'
   },
   {
-    src: 'http://www.gaen.skn1.com/images/thumbs/2.jpg'
+    src: 'http://www.asociacion-gaen.com/galeria3/img/23.jpg'
   },
   {
-    src: 'http://www.gaen.skn1.com/images/thumbs/3.jpg'
+    src: 'http://www.asociacion-gaen.com/galeria3/img/24.jpg'
   },
   {
-    src: 'http://www.gaen.skn1.com/images/thumbs/4.jpg'
-  },
-  {
-    src: 'http://www.gaen.skn1.com/images/thumbs/5.jpg'
-  },
-  {
-    src: 'http://www.gaen.skn1.com/images/thumbs/6.jpg'
+    src: 'http://www.asociacion-gaen.com/galeria3/img/25.jpg'
   }
   ];
 $scope.zoomMin = 1;

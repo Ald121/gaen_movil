@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('pedidosController', function($scope,$localStorage,$cordovaCamera,servicios,serviciosPedidos, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $ionicPopup, $cordovaActionSheet,$stateParams,$state) {
 
+$scope.idpedido=$stateParams.idpedido;
+console.log($scope.idpedido);
 serviciosPedidos.mis_pedidos().get().$promise.then(function(data){
 $scope.mis_pedidos=data.respuesta;
 },function(error){
@@ -113,20 +115,21 @@ $scope.pathForImage = function(image) {
 
 $scope.uploadImage = function() {
   // Destination URL
-  var url = "http://gaen.skn1.com/serviciosGaen/public/uploadDeposito";
+  var url = "http://api.asociacion-gaen.com/public/uploadDeposito";
  
   // File for Upload
   var targetPath = $scope.pathForImage($scope.image);
  
   // File name only
   var filename = $scope.image;;
+  var idpedido=$scope.idpedido;
  
   var options = {
     fileKey: "file",
     fileName: filename,
     chunkedMode: false,
     mimeType: "multipart/form-data",
-    params : {'fileName': filename,'idpedido': '113'},
+    params : {'fileName': filename,'idpedido': idpedido},
     headers : {
                 Connection: "close"
             },

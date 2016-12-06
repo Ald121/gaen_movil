@@ -88,6 +88,7 @@ $scope.showAlertOk();
 
  $scope.change_prov=function(provincia){
     // $scope.datos.nombre_provincia=provincia;
+    console.log(provincia);
     $scope.selectedProv = provincia;
   }
 
