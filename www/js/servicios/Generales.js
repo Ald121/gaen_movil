@@ -45,6 +45,22 @@ app.service('servicios', function($resource) {
                             method: 'POST', isArray: false
                         }
                     });
+            },
+            empresas_envio: function() {
+              return $resource(ipserver+'public/getEmpresasEnvio', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
+            },
+            costo_envio: function() {
+              return $resource(ipserver+'public/getCostoEnvio', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
             }
         }
     };

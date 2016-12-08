@@ -3,13 +3,17 @@ angular.module('starter.controllers')
 
 $scope.provincias=[];
 $scope.ciudades=[];
-$scope.empresas_envio=[{nombre_empresa:'Servientrega'},{nombre_empresa:'Correos del Ecuador'}];
+$scope.empresas_envio=[];
 servicios.localizacion().provincias().get().$promise.then(function(data){
   $scope.provincias=data.repuesta;
 });
 
 servicios.localizacion().ciudades().get().$promise.then(function(data){
   $scope.ciudades=data.repuesta;
+});
+
+servicios.pagos().empresas_envio().get().$promise.then(function(data){
+  $scope.empresas_envio=data.repuesta;
 });
 
 
@@ -35,7 +39,8 @@ if ($rootScope.direccion) {
   sexo:$rootScope.datosUser.sexo,
   nombre_provincia:$scope.selectedProv,
   nombre_ciudad:$scope.selectedCiud,
-  nombre_empresa:$scope.selectedEmpresa
+  nombre_empresa:$scope.selectedEmpresa,
+  costo:$rootScope.datosUser.costo,
   }
 }
 }
@@ -105,6 +110,19 @@ var index=$rootScope.productos_carrito.indexOf(producto);
   $scope.change_genero=function(choice){
     $scope.datos.sexo=choice;
     $scope.choice = choice;
+    $scope.actualizar_dataUser();
+  }
+
+  $scope.change_empresa=function(empresa){
+    $scope.datos.nombre_empresa=empresa;
+    $scope.selectedEmpresa = empresa;
+    servicios.pagos().costo_envio().get({idempresas:empresa,nombre_ciudad:$scope.datos.nombre_ciudad}).$promise.then(function(data){
+      console.log(data);
+      if (data.respuesta!=null) {
+        $scope.datos.costo=data.respuesta.precio_envio;
+      }
+      
+    });
     $scope.actualizar_dataUser();
   }
 

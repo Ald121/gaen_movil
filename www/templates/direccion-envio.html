@@ -9,12 +9,6 @@
     <ion-content>
     <form name="form_datosUser">
     <div class="list card" ng-show="direccion">
-    <label class="item item-select" >
-        <span class="input-label positive">Empresa de Envío</span>
-        <img src="img/loader.gif" ng-if="empresas_envio.length==0" style="float: right;">
-        <select  name="envio" ng-options="opt.nombre_empresa as opt.nombre_empresa for opt in empresas_envio" ng-model="selectedEmpresa" ng-change="change_empresa(selectedEmpresa)" ng-if="empresas_envio.length>0" required></select>
-        <span class="assertive" ng-show="form_datosUser.envio.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Empresa para el Envío</span>
-  </label>
   <label class="item item-input item-stacked-label">
     <span class="input-label positive positive">Cédula</span>
     <input type="text" ng-model="datos.idcliente" placeholder="John" disabled required>
@@ -34,13 +28,13 @@
   <label class="item item-select" >
         <span class="input-label positive">Provincia</span>
         <img src="img/loader.gif" ng-if="provincias.length==0" style="float: right;">
-        <select  name="provincia" ng-options="opt.nombre_provincia as opt.nombre_provincia for opt in provincias" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
+        <select  name="provincia" ng-options="opt.idprovincias as opt.nombre_provincias for opt in provincias" ng-model="selectedProv" ng-change="change_prov(selectedProv)" ng-if="provincias.length>0" required></select>
         <span class="assertive" ng-show="form_datosUser.provincia.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Provincia</span>
   </label>
   <label class="item item-select" >
         <img src="img/loader.gif" ng-if="ciudades.length==0" style="float: right;">
         <span class="input-label positive">Ciudad</span>
-        <select  ng-options="opt.nombre_ciudad as opt.nombre_ciudad for opt in ciudades | filter:{ nombre_provincia : selectedProv }" ng-change="change_ciu(selectedCiud)" name="ciudad" ng-model="selectedCiud" ng-if="ciudades.length>0" required></select>
+        <select  ng-options="opt.idciudad as opt.nombre_ciudad for opt in ciudades | filter:{ idprovincia : selectedProv }" ng-change="change_ciu(selectedCiud)" name="ciudad" ng-model="selectedCiud" ng-if="ciudades.length>0" required></select>
         <span class="assertive" ng-show="form_datosUser.ciudad.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Ciudad</span>
   </label>
   <label class="item item-input item-stacked-label">
@@ -58,6 +52,12 @@
   <label class="item item-input item-stacked-label">
     <span class="input-label positive">Telefono</span>
     <input type="text" name="telefono" ng-model="datos.telefono" placeholder="062999-999" required>
+  </label>
+      <label class="item item-select" >
+        <span class="input-label positive">Empresa de Envío</span>
+        <img src="img/loader.gif" ng-if="empresas_envio.length==0" style="float: right;">
+        <select  name="envio" ng-options="opt.idempresas as opt.nombre_empresa for opt in empresas_envio" ng-model="selectedEmpresa" ng-change="change_empresa(selectedEmpresa)" ng-if="empresas_envio.length>0" required></select>
+        <span class="assertive" ng-show="form_datosUser.envio.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione la Empresa para el Envío</span>
   </label>
 </div>
 <div class="list card" ng-show="!direccion">
