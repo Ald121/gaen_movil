@@ -61,6 +61,14 @@ app.service('servicios', function($resource) {
                             method: 'POST', isArray: false
                         }
                     });
+            },
+            parametros: function() {
+              return $resource(ipserver+'public/getParametros', {}
+                    , {
+                        get: {
+                            method: 'POST', isArray: false
+                        }
+                    });
             }
         }
     };

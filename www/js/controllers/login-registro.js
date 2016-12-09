@@ -4,10 +4,10 @@ angular.module('starter.controllers')
 $scope.loginstatus=false;
 $scope.provincias={};
 servicios.localizacion().provincias().get().$promise.then(function(data){
-  $scope.provincias=data.repuesta;
+  $scope.provincias=data.respuesta;
 });
 servicios.localizacion().ciudades().get().$promise.then(function(data){
-  $scope.ciudades=data.repuesta;
+  $scope.ciudades=data.respuesta;
 });
 
 $scope.login=function(user,pass){

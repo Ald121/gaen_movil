@@ -1,21 +1,31 @@
 angular.module('starter.controllers')
-.controller('VerCarritoController', function($state,$ionicPopup,serviciosPedidos,servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.controller('VerCarritoController', function($state,$timeout,$ionicPopup,serviciosPedidos,servicios,$rootScope,$localStorage,$scope,$stateParams,servicioscatalogo, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
 
 $scope.provincias=[];
 $scope.ciudades=[];
 $scope.empresas_envio=[];
 servicios.localizacion().provincias().get().$promise.then(function(data){
-  $scope.provincias=data.repuesta;
+  $scope.provincias=data.respuesta;
 });
 
 servicios.localizacion().ciudades().get().$promise.then(function(data){
-  $scope.ciudades=data.repuesta;
+  $scope.ciudades=data.respuesta;
 });
 
 servicios.pagos().empresas_envio().get().$promise.then(function(data){
-  $scope.empresas_envio=data.repuesta;
+  $scope.empresas_envio=data.respuesta;
 });
 
+function ok_iva(data){
+  for (var i = 0; i < data.respuesta.length; i++) {
+    if (data.respuesta[i].nom_parametro=="IVA") {
+      $scope.iva=data.respuesta[i].de_parametro;
+    }
+  }
+  $scope.calc_total();
+}
+
+servicios.pagos().parametros().get({},ok_iva).$promise;
 
 $scope.cargar_datos=function(){
 if ($rootScope.direccion) {
@@ -27,6 +37,7 @@ if ($rootScope.direccion) {
   $scope.selectedCiud = $rootScope.datosUser.nombre_ciudad;
   $scope.selectedProv = $rootScope.datosUser.nombre_provincia;
   $scope.selectedEmpresa=$rootScope.datosUser.nombre_empresa;
+  $scope.costo_envio=parseInt($rootScope.datosUser.costo);
 
   $scope.datos={
   idcliente:$rootScope.datosUser.idcliente,
@@ -58,9 +69,11 @@ var suma=0;
 	suma=suma+multi;
 }
 $scope.subtotal=suma;
-$scope.total=(suma+4.99).toFixed(2);
-// console.log($scope.total);
+$scope.cal_iva=$scope.subtotal*$scope.iva/100;
+$scope.total=(suma+$scope.costo_envio+$scope.cal_iva).toFixed(2);
 }
+
+$timeout($scope.calc_total(), 1000);
 
 $scope.remove_producto=function(producto){
 var index=$rootScope.productos_carrito.indexOf(producto);
@@ -117,9 +130,12 @@ var index=$rootScope.productos_carrito.indexOf(producto);
     $scope.datos.nombre_empresa=empresa;
     $scope.selectedEmpresa = empresa;
     servicios.pagos().costo_envio().get({idempresas:empresa,nombre_ciudad:$scope.datos.nombre_ciudad}).$promise.then(function(data){
-      console.log(data);
       if (data.respuesta!=null) {
         $scope.datos.costo=data.respuesta.precio_envio;
+        $scope.costo_envio=data.respuesta.precio_envio;
+      }else{
+        $scope.datos.costo=0;
+        $scope.costo_envio=0;
       }
       
     });
@@ -154,7 +170,7 @@ var index=$rootScope.productos_carrito.indexOf(producto);
  };
 
   servicios.pagos().datos_deposito().get().$promise.then(function(data){
-  $scope.deposito=data.repuesta;
+  $scope.deposito=data.respuesta;
   });
 
 });

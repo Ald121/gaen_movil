@@ -29,7 +29,7 @@
           </div>
           <a class="item item-icon-left" href="#">
             <span class="item-note positive">
-              Envio: $ 4.99
+              Envio: $ {{costo_envio}}
             </span>
           </a>
           <a class="item item-icon-left" href="#">
@@ -39,11 +39,15 @@
           </a>
           <a class="item item-icon-left" href="#">
             <span class="item-note positive">
+              IVA ({{iva}}%): $ {{cal_iva}}
+            </span>
+          </a>
+          <a class="item item-icon-left" href="#">
+            <span class="item-note positive">
               Total: $ {{total}}
             </span>
           </a>
         </div>
-
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-stable">
         <h1 class="title"></h1>
