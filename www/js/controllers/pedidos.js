@@ -22,9 +22,12 @@ function success_bancos(data){
 
 serviciosPedidos.Bancos().get({},success_bancos).$promise;
 
-$scope.change_banco=function(selectedBanco){
+$scope.change_banco=function(selectedBanco,numero){
   $scope.banco=selectedBanco;
-  console.log($scope.idpedido);
+  $scope.numero_deposito=numero;
+}
+$scope.get_numero_deposito=function(numero){
+  $scope.numero_deposito=numero;
 }
 
 $scope.image = null;
@@ -115,6 +118,7 @@ $scope.selectPicture = function(sourceType) {
 };
 
 $scope.pathForImage = function(image) {
+
   if (image === null) {
     return '';
   } else {
@@ -132,15 +136,15 @@ $scope.uploadImage = function() {
   // File name only
   var filename = $scope.image;;
   var idpedido=$scope.idpedido;
-  var numero_pedido=$scope.numero_pedido;
+  var numero_deposito=$scope.numero_deposito;
   var banco=$scope.banco;
- 
+
   var options = {
     fileKey: "file",
     fileName: filename,
     chunkedMode: false,
     mimeType: "multipart/form-data",
-    params : {'fileName': filename,'idpedido': idpedido,'numero_pedido': numero_pedido,'banco': banco},
+    params : {'fileName': filename,'idpedido': idpedido,'numero_deposito': numero_deposito,'banco': banco},
     headers : {
                 Connection: "close"
             },

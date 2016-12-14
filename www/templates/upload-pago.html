@@ -10,15 +10,15 @@
     <form name="form_pago">
     <label class="item item-input item-stacked-label">
       <span class="input-label positive positive">Número de deposito</span>
-      <input type="text" name="numero_deposito" ng-model="numero_deposito" placeholder="XXXXXXX" required>
-      <span class="assertive" ng-show="form_pago.numero_deposito.$error.required" style="font-size: 14px;">
+      <input type="text" name="numero" ng-model="numero" ng-keyup="get_numero_deposito(numero)" placeholder="XXXXXXX" required>
+      <span class="assertive" ng-show="form_pago.numero.$error.required"  style="font-size: 14px;">
       <i class="icon ion-information-circled" ></i> Ingrese el número del depósito
       </span>
     </label>
     <label class="item item-select" >
         <span class="input-label positive">Banco</span>
         <img src="img/loader.gif" ng-if="bancos.length==0" style="float: right;">
-        <select  name="banco" ng-options="opt.banco as opt.banco for opt in bancos" ng-model="selectedBanco" ng-change="change_banco(selectedBanco)" ng-if="bancos.length>0" required></select>
+        <select  name="banco" ng-options="opt.banco as opt.banco for opt in bancos" ng-model="selectedBanco" ng-change="change_banco(selectedBanco,numero)" ng-if="bancos.length>0" required></select>
         <span class="assertive" ng-show="form_pago.banco.$error.required" style="font-size: 14px;"><i class="icon ion-information-circled" ></i> Seleccione el Banco</span>
   </label>
   </form>
