@@ -2,7 +2,6 @@ angular.module('starter.controllers')
 .controller('pedidosController', function($scope,$localStorage,$cordovaCamera,servicios,serviciosPedidos, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, $ionicPopup, $cordovaActionSheet,$stateParams,$state) {
 
 $scope.idpedido=$stateParams.idpedido;
-console.log($scope.idpedido);
 serviciosPedidos.mis_pedidos().get().$promise.then(function(data){
 $scope.mis_pedidos=data.respuesta;
 },function(error){
@@ -17,6 +16,16 @@ $scope.mis_pedidos=data.respuesta;
 
 	}
 });
+function success_bancos(data){
+  $scope.bancos=data.respuesta;
+}
+
+serviciosPedidos.Bancos().get({},success_bancos).$promise;
+
+$scope.change_banco=function(selectedBanco){
+  $scope.banco=selectedBanco;
+  console.log($scope.idpedido);
+}
 
 $scope.image = null;
   $scope.showAlert = function(title, msg) {
@@ -123,13 +132,15 @@ $scope.uploadImage = function() {
   // File name only
   var filename = $scope.image;;
   var idpedido=$scope.idpedido;
+  var numero_pedido=$scope.numero_pedido;
+  var banco=$scope.banco;
  
   var options = {
     fileKey: "file",
     fileName: filename,
     chunkedMode: false,
     mimeType: "multipart/form-data",
-    params : {'fileName': filename,'idpedido': idpedido},
+    params : {'fileName': filename,'idpedido': idpedido,'numero_pedido': numero_pedido,'banco': banco},
     headers : {
                 Connection: "close"
             },

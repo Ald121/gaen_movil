@@ -25,4 +25,16 @@ app.service('serviciosPedidos', function($resource,servicios,$localStorage) {
             }
         });
     };
+
+    this.Bancos = function() {
+        return $resource(servicios.server().appGaen()+'public/getBancos', {}
+        , {
+            get: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
 });
